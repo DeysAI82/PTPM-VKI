@@ -1,4 +1,3 @@
-
 import sqlite3
 
 
@@ -9,14 +8,13 @@ class Database:
         self.connection.execute("""
             CREATE TABLE IF NOT EXISTS triangles (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
-                a REAL,
-                b REAL,
-                c REAL,
+                a TEXT,
+                b TEXT,
+                c TEXT,
                 triangle_type TEXT,
                 error_message TEXT
             )
         """)
-
         self.connection.commit()
 
     def add(self, a, b, c, triangle_type, error_message):
@@ -25,7 +23,6 @@ class Database:
             (a, b, c, triangle_type, error_message)
             VALUES (?, ?, ?, ?, ?)
         """, (a, b, c, triangle_type, error_message))
-
         self.connection.commit()
 
     def get(self, a, b, c):
@@ -42,7 +39,6 @@ class Database:
             DELETE FROM triangles
             WHERE a = ? AND b = ? AND c = ?
         """, (a, b, c))
-
         self.connection.commit()
 
     def close(self):
