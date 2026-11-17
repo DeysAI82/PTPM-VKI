@@ -39,12 +39,15 @@ class ForumParser:
                 class_="tm-comment__body-content"
             )
 
+
             if comment_id and username and message:
                 comments.append({
                     "id": int(comment_id),
                     "name": username.text.strip(),
                     "message": message.decode_contents().strip()
                 })
+
+            print(comments)
 
         return comments
 
